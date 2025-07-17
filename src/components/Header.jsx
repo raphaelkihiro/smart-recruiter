@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 function Header() {
   return (
     <header className="bg-[#0D1B2A] text-white shadow-md">
@@ -15,18 +16,18 @@ function Header() {
         </div>
        
         <div className="hidden md:block ">
-          <a
-            href="/login"
+          <Link
+            to="/login"
             className="bg-cyan-400 hover:bg-cyan-500 text-[#0D1B2A] font-semibold px-5 py-2 rounded-full transition mx-6"
           >
             Login
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/signup"
             className="bg-cyan-400 hover:bg-cyan-500 text-[#0D1B2A] font-semibold px-5 py-2 rounded-full transition"
           >
             SignUp
-          </a>
+          </Link>
           </div>
       </div>
     </header>
