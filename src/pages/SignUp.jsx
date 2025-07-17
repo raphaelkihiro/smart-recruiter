@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -41,14 +43,19 @@ function Signup() {
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0D1B2A] px-4">
-      <div className="max-w-md w-full p-10 bg-[#112D44] text-white rounded-xl shadow-xl space-y-6">
+    <>
+    <div>
+      <Header/>
+    </div>
+
+    <div className="min-h-screen flex items-center justify-center bg-[#12283f] px-4">
+      <div className="max-w-md w-full p-10 bg-[#112D44] text-white rounded-xl shadow-xl space-y-6 mt-5">
         <div className="text-center">
           <h2 className="text-3xl font-extrabold text-cyan-400 mb-2">
             Create Your Account
           </h2>
           <p className="text-sm text-gray-300">
-            Join Smart Recruiter and streamline your hiring journey.
+            Join Smart Recruiter and begin your career journey.
           </p>
         </div>
 
@@ -111,7 +118,7 @@ function Signup() {
 
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Phone Number <span className="text-red-500">*</span>
+              Role <span className="text-red-500">*</span>
             </label>
             <select
               value={role}
@@ -142,6 +149,10 @@ function Signup() {
         </p>
       </div>
     </div>
+    <div>
+    <Footer/>
+    </div>
+    </>
   );
 }
 
