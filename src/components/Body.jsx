@@ -1,4 +1,5 @@
 import { FaFacebook, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { Link } from "react-router-dom";
 function Body () {
   return (
     <>
@@ -14,18 +15,18 @@ function Body () {
             Empower your recruitment process with coding challenges, live analytics, and AI-generated feedback — all in one platform.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-4">
-            <a
-              to="/signup"
+            <Link
+              to="/login"
               className="bg-cyan-400 text-[#0D1B2A] font-semibold px-6 py-3 rounded-md hover:bg-cyan-500 transition"
             >
               Login
-            </a>
-            <a
-              to="/features"
+            </Link>
+            <Link
+              to="/signup"
               className="border border-cyan-400 text-cyan-400 px-6 py-3 rounded-md hover:bg-cyan-400 hover:text-[#0D1B2A] transition"
             >
               Get Started
-            </a>
+            </Link>
           </div>
         </div>
 
