@@ -31,7 +31,7 @@ function Signup() {
 
       if (res.ok) {
         toast.success("Signup successful!");
-        navigate("/login");
+        navigate("#");
       } else {
         toast.error(data.message || "Signup failed");
       }
