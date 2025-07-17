@@ -14,25 +14,20 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+    // Dummy user data
+    const dummyUser = {
+      email: "student@example.com",
+      password: "password123",
+      token: "dummy_token_123456",
+    };
 
-      const data = await res.json();
-
-      if (res.ok) {
-        toast.success("Login successful!");
-        localStorage.setItem("token", data.access_token);
-        navigate("/dashboard"); // Change to your post-login route
-      } else {
-        toast.error(data.message || "Login failed");
-      }
-    } catch (err) {
-      console.error(err);
-      toast.error("Something went wrong");
+    // Check if input matches dummy
+    if (email === dummyUser.email && password === dummyUser.password) {
+      toast.success("Login successful (dummy user)!");
+      localStorage.setItem("token", dummyUser.token);
+      navigate("/dashboard"); // Or /student-dashboard if you prefer
+    } else {
+      toast.error("Invalid email or password");
     }
   };
 
