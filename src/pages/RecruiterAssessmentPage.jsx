@@ -10,6 +10,9 @@ export default function RecruiterAssessmentsPage() {
   const [questions, setQuestions] = useState([]);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState("");
+  const [expiresInDays, setExpiresInDays] = useState(7);
+  const [isSendingInvite, setIsSendingInvite] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
@@ -70,6 +73,38 @@ export default function RecruiterAssessmentsPage() {
     toast.success("Question added");
   }
 
+  async function sendInvite() {
+    const token = localStorage.getItem("access_token");
+    if (!token) return toast.error("Login required");
+    if (!inviteEmail.trim()) return toast.error("Email is required");
+
+    setIsSendingInvite(true);
+    try {
+      const res = await fetch(`${BASE_URL}/invites`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          assessment_id: selected.id,
+          interviewee_email: inviteEmail.trim(),
+          expires_in_days: expiresInDays,
+        }),
+      });
+
+      if (!res.ok) throw new Error("Invite failed");
+      const data = await res.json();
+      toast.success("Invite sent successfully!");
+      setInviteEmail("");
+      setExpiresInDays(7);
+    } catch {
+      toast.error("Failed to send invite");
+    } finally {
+      setIsSendingInvite(false);
+    }
+  }
+
   return (
     <div className="space-y-6 p-4">
       <h2 className="text-xl font-bold">Recruiter: Assessments</h2>
@@ -120,7 +155,7 @@ export default function RecruiterAssessmentsPage() {
           </ul>
 
           {selectedQuestion && (
-            <div className="mt-4 p-4 border rounded bg-gray-50">
+            <div className="mt-4 p-4 border rounded bg-gray-50 space-y-2">
               <p>
                 <strong>Prompt:</strong> {selectedQuestion.prompt}
               </p>
@@ -139,6 +174,35 @@ export default function RecruiterAssessmentsPage() {
               </p>
             </div>
           )}
+
+          <div className="mt-6 border-t pt-4 space-y-4">
+            <h4 className="text-md font-semibold">Send Assessment Invite</h4>
+
+            <input
+              type="email"
+              value={inviteEmail}
+              onChange={(e) => setInviteEmail(e.target.value)}
+              placeholder="Interviewee's email"
+              className="w-full p-2 border rounded"
+            />
+
+            <input
+              type="number"
+              min={1}
+              value={expiresInDays}
+              onChange={(e) => setExpiresInDays(parseInt(e.target.value))}
+              placeholder="Expires in days"
+              className="w-full p-2 border rounded"
+            />
+
+            <button
+              onClick={sendInvite}
+              disabled={isSendingInvite}
+              className="bg-green-600 text-white px-4 py-2 rounded"
+            >
+              {isSendingInvite ? "Sending..." : "Send Invite"}
+            </button>
+          </div>
         </div>
       )}
     </div>
