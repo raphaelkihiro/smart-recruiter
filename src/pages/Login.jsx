@@ -26,7 +26,7 @@ function Login() {
       if (res.ok) {
         toast.success("Login successful!");
         localStorage.setItem("token", data.access_token);
-        navigate("/dashboard"); // Change to your post-login route
+        navigate("/dashboard"); 
       } else {
         toast.error(data.message || "Login failed");
       }
@@ -35,6 +35,8 @@ function Login() {
       toast.error("Something went wrong");
     }
   };
+
+  // };
 
   return (
   <>
