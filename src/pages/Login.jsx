@@ -27,7 +27,7 @@ function Login() {
         toast.success("Login successful!");
 
         // ✅ Store token and role
-        localStorage.setItem("token", data.access_token);
+        localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("role", data.role);
 
         // ✅ Redirect based on role
