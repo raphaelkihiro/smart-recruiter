@@ -4,21 +4,8 @@ import Home from "./components/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import RectuireSignup from "./pages/Rectuiresignup";
-
-
-{/*
-  import RecruiterDashboard from "./pages/RecruiterDashboard";
-  import IntervieweeDashboard from "./pages/IntervieweeDashboard";*/
-}
-
-import StudentDashboard from "./pages/Studentdashboard";
-import RecruiterDashboard from "./pages/Recruiterdashboard";
-
-
-
-// import Assessment from "./pages/Assessment";
-
-
+import RecruiterDashboard from "./pages/RecruiterDashboard";
+import IntervieweeDashboard from "./pages/IntervieweeDashboard";
 
 
 function App() {
@@ -31,22 +18,14 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          {/* <Route path="/login" element={<Login/>} /> */}
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-
-          {/*<Route path="/recruiterdashboard" element={<RecruiterDashboard />} />
-          <Route path="/intervieweedashboard" element={<IntervieweeDashboard />} />*/}
-
-          <Route path="/dashboard" element={<StudentDashboard />} />
-
+          <Route
+            path="/intervieweedashboard"
+            element={<IntervieweeDashboard />}
+          />
           <Route path="/recruiter-signup" element={<RectuireSignup />} />
-          <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
-
-          {/* <Route path="/assessment" element={<Assessment/>} /> */}
-        
-
-
+          <Route path="/recruiterdashboard" element={<RecruiterDashboard />} />
         </Routes>
       </Router>
     </>
