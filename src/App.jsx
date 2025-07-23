@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
+import RectuireSignup from "./pages/Rectuiresignup";
+
 
 {/*
   import RecruiterDashboard from "./pages/RecruiterDashboard";
@@ -37,8 +39,10 @@ function App() {
           <Route path="/intervieweedashboard" element={<IntervieweeDashboard />} />*/}
 
           <Route path="/dashboard" element={<StudentDashboard />} />
- 
+
+          <Route path="/recruiter-signup" element={<RectuireSignup />} />
           <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
+
           {/* <Route path="/assessment" element={<Assessment/>} /> */}
         
 
