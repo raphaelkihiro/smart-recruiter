@@ -40,7 +40,7 @@ function App() {
 
           <Route path="/dashboard" element={<StudentDashboard />} />
 
-          <Route path="/rectuire-signup" element={<RectuireSignup />} />
+          <Route path="/recruiter-signup" element={<RectuireSignup />} />
           <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
 
           {/* <Route path="/assessment" element={<Assessment/>} /> */}
