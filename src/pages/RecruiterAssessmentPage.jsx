@@ -75,29 +75,31 @@ export default function RecruiterAssessmentsPage() {
 
   return (
     <div className="space-y-6 p-4">
-      <h2 className="text-xl font-bold">Recruiter: Assessments</h2>
-
+      <h2 className="text-xl font-bold text-cyan-400">
+        Recruiter: Assessments
+      </h2>
       <ul className="space-y-2">
         {assessments.map((a) => (
           <li
             key={a.id}
-            className="cursor-pointer bg-gray-100 p-2 rounded hover:bg-gray-200"
+            className="cursor-pointer bg-[#112D44] text-white p-2 rounded hover:bg-cyan-600"
             onClick={() => handleSelect(a.id)}
           >
             {a.title}
           </li>
         ))}
       </ul>
-
       {selected && (
-        <div className="mt-4 p-4 border rounded bg-white shadow space-y-4">
-          <h3 className="text-lg font-semibold">{selected.title}</h3>
+        <div className="mt-4 p-4 border border-cyan-400 rounded bg-[#0D1B2A] text-white shadow space-y-4">
+          <h3 className="text-lg font-semibold text-cyan-300">
+            {selected.title}
+          </h3>
           <p>Time Limit: {selected.time_limit} mins</p>
           <p>Published: {selected.published ? "Yes" : "No"}</p>
 
           <button
             onClick={() => setShowForm((prev) => !prev)}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-cyan-500 hover:bg-cyan-600 text-[#0D1B2A] font-semibold px-4 py-2 rounded transition duration-200"
           >
             {showForm ? "Cancel" : "Add Question"}
           </button>
@@ -114,7 +116,7 @@ export default function RecruiterAssessmentsPage() {
             {questions.map((q) => (
               <li
                 key={q.id}
-                className="cursor-pointer bg-gray-100 p-2 rounded hover:bg-gray-200"
+                className="cursor-pointer bg-[#112D44] text-white p-2 rounded hover:bg-cyan-700"
                 onClick={() => setSelectedQuestion(q)}
               >
                 {q.prompt.substring(0, 60)}...
@@ -123,7 +125,7 @@ export default function RecruiterAssessmentsPage() {
           </ul>
 
           {selectedQuestion && (
-            <div className="mt-4 p-4 border rounded bg-gray-50 space-y-2">
+            <div className="mt-4 p-4 border border-cyan-400 rounded bg-[#12283f] space-y-2 text-white">
               <p>
                 <strong>Prompt:</strong> {selectedQuestion.prompt}
               </p>
@@ -131,7 +133,7 @@ export default function RecruiterAssessmentsPage() {
                 <strong>Type:</strong> {selectedQuestion.type}
               </p>
               {selectedQuestion.options && (
-                <ul className="list-disc pl-6">
+                <ul className="list-disc pl-6 text-cyan-300">
                   {selectedQuestion.options.map((opt, i) => (
                     <li key={i}>{opt}</li>
                   ))}
@@ -144,6 +146,7 @@ export default function RecruiterAssessmentsPage() {
           )}
         </div>
       )}
+      
     </div>
   );
 }
