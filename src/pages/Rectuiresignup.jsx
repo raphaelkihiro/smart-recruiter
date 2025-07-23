@@ -6,12 +6,12 @@ import Footer from "../components/Footer";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-function Signup() {
+function RectuireSignup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [contactInfo, setContactInfo] = useState("");
-  const [role] = useState("interviewee");
+  const [role] = useState("recruiter");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -164,4 +164,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default RectuireSignup;
