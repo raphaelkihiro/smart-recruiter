@@ -12,6 +12,9 @@ import RectuireSignup from "./pages/Rectuiresignup";
 }
 
 import StudentDashboard from "./pages/Studentdashboard";
+import RecruiterDashboard from "./pages/Recruiterdashboard";
+
+
 
 // import Assessment from "./pages/Assessment";
 
@@ -36,12 +39,13 @@ function App() {
           <Route path="/intervieweedashboard" element={<IntervieweeDashboard />} />*/}
 
           <Route path="/dashboard" element={<StudentDashboard />} />
-          <Route path="/rectuire-signup" element={<RectuireSignup />} />
-       
 
+          <Route path="/rectuire-signup" element={<RectuireSignup />} />
+          <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
 
           {/* <Route path="/assessment" element={<Assessment/>} /> */}
         
+
 
         </Routes>
       </Router>
