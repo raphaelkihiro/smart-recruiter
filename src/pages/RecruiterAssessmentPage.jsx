@@ -11,6 +11,7 @@ export default function RecruiterAssessmentsPage() {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
+
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) return toast.error("Please log in");
@@ -70,6 +71,8 @@ export default function RecruiterAssessmentsPage() {
     toast.success("Question added");
   }
 
+  
+
   return (
     <div className="space-y-6 p-4">
       <h2 className="text-xl font-bold">Recruiter: Assessments</h2>
@@ -120,7 +123,7 @@ export default function RecruiterAssessmentsPage() {
           </ul>
 
           {selectedQuestion && (
-            <div className="mt-4 p-4 border rounded bg-gray-50">
+            <div className="mt-4 p-4 border rounded bg-gray-50 space-y-2">
               <p>
                 <strong>Prompt:</strong> {selectedQuestion.prompt}
               </p>
