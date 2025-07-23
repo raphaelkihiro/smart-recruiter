@@ -10,13 +10,8 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-<<<<<<< HEAD
-  // const [contactInfo, setContactInfo] = useState("");
-  const [role, setRole] = useState("");
-=======
   const [contactInfo, setContactInfo] = useState("");
   const [role] = useState("interviewee");
->>>>>>> origin/main
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -99,9 +94,6 @@ function Signup() {
               />
             </div>
 
-<<<<<<< HEAD
-          {/* <div>
-=======
             <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
                 Password <span className="text-red-500">*</span>
@@ -117,7 +109,6 @@ function Signup() {
             </div>
 
             <div>
->>>>>>> origin/main
             <label className="block text-sm font-medium text-gray-300 mb-1">
               Phone Number <span className="text-red-500">*</span>
             </label>
@@ -129,7 +120,7 @@ function Signup() {
               className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
               required
             />
-          </div> */}
+          </div> 
 
             {/* <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
