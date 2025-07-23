@@ -11,7 +11,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [contactInfo, setContactInfo] = useState("");
-  const [role, setRole] = useState("");
+  const [role] = useState("interviewee");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -122,7 +122,7 @@ function Signup() {
             />
           </div>
 
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
                 Role <span className="text-red-500">*</span>
               </label>
@@ -136,7 +136,7 @@ function Signup() {
                 <option value="interviewee">Interviewee</option>
                 <option value="recruiter">Recruiter</option>
               </select>
-            </div>
+            </div> */}
 
             <button
               type="submit"
