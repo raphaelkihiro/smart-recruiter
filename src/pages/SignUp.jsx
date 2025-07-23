@@ -10,7 +10,7 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [contactInfo, setContactInfo] = useState("");
+  // const [contactInfo, setContactInfo] = useState("");
   const [role, setRole] = useState("");
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ function Signup() {
           name,
           email,
           password,
-          contact_info: contactInfo,
+          // contact_info: contactInfo,
           role,
         }),
       });
@@ -102,7 +102,7 @@ function Signup() {
             />
           </div>
 
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
               Phone Number <span className="text-red-500">*</span>
             </label>
@@ -114,7 +114,7 @@ function Signup() {
               className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
               required
             />
-          </div>
+          </div> */}
 
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
