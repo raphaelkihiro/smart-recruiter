@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
+import InviteAccept from "./pages/Invite.jsx";
+
 
 {/*
   import RecruiterDashboard from "./pages/RecruiterDashboard";
@@ -35,6 +37,7 @@ function App() {
           <Route path="/dashboard" element={<StudentDashboard />} />
           {/* <Route path="/assessment" element={<Assessment/>} /> */}
 
+          <Route path="/invites/accept" element={<InviteAccept />} />
         </Routes>
       </Router>
     </>
