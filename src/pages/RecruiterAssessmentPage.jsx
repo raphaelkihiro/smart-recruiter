@@ -14,7 +14,10 @@ export default function RecruiterAssessmentsPage() {
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    if (!token) return toast.error("Please log in");
+    if (!token) {
+      toast.error("Please log in");
+      return; // ✅ important: no implicit return value from useEffect
+    }
 
     fetch(`${BASE_URL}/assessments`, {
       headers: {
