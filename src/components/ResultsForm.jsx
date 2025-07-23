@@ -56,35 +56,37 @@ export default function ResultForm({ submissionId, existingResult }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="space-y-4 mt-4 p-4 border rounded shadow bg-gray-50"
+      className="space-y-6 mt-4 p-6 border border-cyan-400 rounded-lg shadow bg-[#0D1B2A] text-white"
     >
       <div>
-        <label>Score</label>
+        <label className="block text-sm text-gray-300 mb-1">Score</label>
         <input
           type="number"
           value={score}
           onChange={(e) => setScore(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-3 rounded bg-[#12283f] text-white border border-cyan-400 placeholder-gray-400"
+          placeholder="e.g. 90"
           required
         />
       </div>
 
       <div>
-        <label>Rank</label>
+        <label className="block text-sm text-gray-300 mb-1">Rank</label>
         <input
           type="number"
           value={rank}
           onChange={(e) => setRank(e.target.value)}
-          className="w-full p-2 border rounded"
+          className="w-full p-3 rounded bg-[#12283f] text-white border border-cyan-400 placeholder-gray-400"
+          placeholder="e.g. 1"
         />
       </div>
 
       <div>
-        <label>Status</label>
+        <label className="block text-sm text-gray-300 mb-1">Status</label>
         <select
           value={passStatus ? "passed" : "failed"}
           onChange={(e) => setPassStatus(e.target.value === "passed")}
-          className="w-full p-2 border rounded"
+          className="w-full p-3 rounded bg-[#12283f] text-white border border-cyan-400"
         >
           <option value="passed">Passed ✅</option>
           <option value="failed">Failed ❌</option>
@@ -92,27 +94,33 @@ export default function ResultForm({ submissionId, existingResult }) {
       </div>
 
       <div>
-        <label>Feedback Summary</label>
+        <label className="block text-sm text-gray-300 mb-1">
+          Feedback Summary
+        </label>
         <textarea
           value={feedback}
           onChange={(e) => setFeedback(e.target.value)}
           rows={4}
-          className="w-full p-2 border rounded"
+          className="w-full p-3 rounded bg-[#12283f] text-white border border-cyan-400 placeholder-gray-400"
+          placeholder="Brief feedback or notes..."
         />
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-3">
         <input
           type="checkbox"
           checked={isReleased}
           onChange={(e) => setIsReleased(e.target.checked)}
+          className="accent-cyan-400"
         />
-        <label>Release results to interviewee</label>
+        <label className="text-sm text-gray-300">
+          Release results to interviewee
+        </label>
       </div>
 
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-cyan-400 hover:bg-cyan-500 text-[#0D1B2A] px-5 py-2 rounded font-semibold transition duration-200"
       >
         Submit Result
       </button>
