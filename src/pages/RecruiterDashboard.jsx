@@ -60,6 +60,13 @@ export default function RecruiterDashboard() {
         return null;
     }
   };
+    function handleLogout() {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("role");
+      window.location.href = "/";
+    }
+
 
   return (
     <div className="flex min-h-screen bg-[#12283f] text-white">
@@ -100,6 +107,12 @@ export default function RecruiterDashboard() {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
+          <button
+            onClick={handleLogout}
+            className="block w-full text-left px-4 py-2 text-red-400 hover:text-red-500"
+          >
+            Logout
+          </button>
         </nav>
       </aside>
 

@@ -21,30 +21,37 @@ export default function IntervieweeResultsPage() {
   const sorted = [...results].sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
 
   return (
-    <div className="p-4 space-y-6">
-      <h2 className="text-xl font-bold">My Assessment Results</h2>
+    <div className="p-6 space-y-6 bg-[#12283f] text-white min-h-screen">
+      <h2 className="text-2xl font-bold text-cyan-400">
+        My Assessment Results
+      </h2>
+
       {sorted.map((r) => (
         <div
           key={r.id}
-          className="border rounded p-4 bg-white shadow space-y-2"
+          className="border border-cyan-400 rounded-lg p-6 bg-[#0D1B2A] shadow space-y-2"
         >
           <p>
-            <strong>Score:</strong> {r.score}
+            <strong className="text-cyan-300">Score:</strong> {r.score}
           </p>
           <p>
-            <strong>Grade:</strong> {r.submission?.grade ?? "Not available"}
+            <strong className="text-cyan-300">Grade:</strong>{" "}
+            {r.submission?.grade ?? "Not available"}
           </p>
           <p>
-            <strong>Rank:</strong> {r.rank ?? "Pending"}
+            <strong className="text-cyan-300">Rank:</strong>{" "}
+            {r.rank ?? "Pending"}
           </p>
           <p>
-            <strong>Status:</strong> {r.pass_status ? "Passed ✅" : "Failed ❌"}
+            <strong className="text-cyan-300">Status:</strong>{" "}
+            {r.pass_status ? "✅ Passed" : "❌ Failed"}
           </p>
           <p>
-            <strong>Time Taken:</strong> {r.time_taken} mins
+            <strong className="text-cyan-300">Time Taken:</strong>{" "}
+            {r.time_taken} mins
           </p>
           <p>
-            <strong>Feedback:</strong>{" "}
+            <strong className="text-cyan-300">Feedback:</strong>{" "}
             {r.feedback_summary || "No feedback provided"}
           </p>
         </div>
