@@ -48,6 +48,13 @@ function RecruiterDashboard() {
           >
             📝 Submit Feedback
           </Link>
+         
+          <Link
+            to="/invites"
+            className="block text-gray-300 hover:text-cyan-400"
+          >
+            📨 Manage Invites
+          </Link>
         </nav>
       </aside>
 
