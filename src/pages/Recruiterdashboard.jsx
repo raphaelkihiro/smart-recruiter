@@ -11,7 +11,7 @@ function RecruiterDashboard() {
 
   return (
     <div className="flex min-h-screen bg-[#12283f] text-white">
-      {/* Sidebar */}
+     
       <aside className="w-64 bg-[#0d1b2a] p-6 space-y-6 hidden md:block">
         <img
           src="./src/assets/image/logo.png"
@@ -58,7 +58,7 @@ function RecruiterDashboard() {
         </nav>
       </aside>
 
-      {/* Main Content */}
+
       <main className="flex-1 p-8">
         <h1 className="text-3xl font-bold mb-6">
           Welcome, <span className="text-cyan-400">{recruiter.name}</span>

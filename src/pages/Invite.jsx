@@ -89,7 +89,7 @@ export default function InvitePage() {
       toast.dismiss();
       toast.success("Invite sent successfully!");
 
-      // Update invites list
+      // Update invite list
       setInvites((prev) => [result.invite, ...prev]);
 
       // Reset form
@@ -106,8 +106,7 @@ export default function InvitePage() {
 
   function formatDate(dateString) {
     if (!dateString) return "N/A";
-    const date = new Date(dateString);
-    return date.toLocaleString();
+    return new Date(dateString).toLocaleString();
   }
 
   if (loading) {
@@ -139,7 +138,6 @@ export default function InvitePage() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Assessment Selector */}
               <div>
                 <label className="block text-gray-300 mb-2">Assessment</label>
                 <select
@@ -150,15 +148,14 @@ export default function InvitePage() {
                   required
                 >
                   <option value="">Select an assessment</option>
-                  {assessments.map((assessment) => (
-                    <option key={assessment.id} value={assessment.id}>
-                      {assessment.title} (ID: {assessment.id})
+                  {assessments.map((a) => (
+                    <option key={a.id} value={a.id}>
+                      {a.title} (ID: {a.id})
                     </option>
                   ))}
                 </select>
               </div>
 
-              {/* Interviewee Email */}
               <div>
                 <label className="block text-gray-300 mb-2">
                   Interviewee Email
@@ -175,7 +172,6 @@ export default function InvitePage() {
               </div>
             </div>
 
-            {/* Expiration */}
             <div className="max-w-xs">
               <label className="block text-gray-300 mb-2">
                 Expiration (Days)
@@ -200,15 +196,15 @@ export default function InvitePage() {
           </form>
         </div>
 
-        {/* Invites List */}
+        {/* Invites Table or Empty State */}
         <div className="bg-[#112D44] rounded-xl shadow-lg p-6">
           <h2 className="text-xl font-semibold text-cyan-400 mb-4">
             Sent Invitations
           </h2>
 
           {invites.length === 0 ? (
-            <div className="text-gray-400 text-center py-8">
-              No invitations sent yet
+            <div className="text-center text-gray-400 py-6">
+              No invites sent yet. Use the form above to invite candidates.
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -240,7 +236,7 @@ export default function InvitePage() {
                           ?.title || "N/A"}
                       </td>
                       <td className="px-4 py-3 text-gray-300">
-                        {invite.interviewee_email}
+                        {invite.interviewee?.email || invite.interviewee_email}
                       </td>
                       <td className="px-4 py-3">
                         <span
