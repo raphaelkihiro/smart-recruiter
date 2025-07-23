@@ -10,6 +10,7 @@ import Signup from "./pages/SignUp";
 }
 
 import StudentDashboard from "./pages/Studentdashboard";
+
 // import Assessment from "./pages/Assessment";
 
 
@@ -34,6 +35,7 @@ function App() {
 
           <Route path="/dashboard" element={<StudentDashboard />} />
           {/* <Route path="/assessment" element={<Assessment/>} /> */}
+        
 
         </Routes>
       </Router>
