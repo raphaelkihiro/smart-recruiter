@@ -4,8 +4,20 @@ import Home from "./components/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import RectuireSignup from "./pages/Rectuiresignup";
+
+import CreateProfile from "./pages/CreateProfile";
+import UpdateProfile from "./pages/UpdateProfile";
+{/*
+  import RecruiterDashboard from "./pages/RecruiterDashboard";
+  import IntervieweeDashboard from "./pages/IntervieweeDashboard";*/
+}
+
+// import Assessment from "./pages/Assessment";
+
+
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import IntervieweeDashboard from "./pages/IntervieweeDashboard";
+
 
 
 function App() {
@@ -20,12 +32,24 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+
+
+          {/*<Route path="/recruiterdashboard" element={<RecruiterDashboard />} />
+          <Route path="/intervieweedashboard" element={<IntervieweeDashboard />} />*/}
+
+          
+          <Route path="/update/profile" element={<UpdateProfile />} />
+          <Route path="/profile" element={<CreateProfile/>} />
+   
+          {/* <Route path="/assessment" element={<Assessment/>} /> */}
+
           <Route
             path="/intervieweedashboard"
             element={<IntervieweeDashboard />}
           />
           <Route path="/recruiter-signup" element={<RectuireSignup />} />
           <Route path="/recruiterdashboard" element={<RecruiterDashboard />} />
+
         </Routes>
       </Router>
     </>
