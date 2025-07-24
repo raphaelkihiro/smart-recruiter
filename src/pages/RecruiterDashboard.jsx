@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import RecruiterSubmissionsPage from "./RecruiterSubmissionsPage";
-import AddInterviewForm from "../components/AddInterviewForm";
+// import AddInterviewForm from "../components/AddInterviewForm";
 import AssessmentForm from "../components/AssessmentForm";
 import RecruiterAssessmentPage from "./RecruiterAssessmentPage";
+import RankedIntervieweesPage from "./RankedIntervieweesPage";
+import ChallengeFetcher from "../components/ChallengeFetcher";
+import logo from "../assets/image/logo.png"; // ✅ Logo import
 
 export default function RecruiterDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -50,35 +53,45 @@ export default function RecruiterDashboard() {
         );
       case "submissions":
         return <RecruiterSubmissionsPage />;
-      case "addInterview":
-        return <AddInterviewForm />;
+      // case "addInterview":
+      //   return <AddInterviewForm />;
       case "createAssessment":
         return <AssessmentForm />;
       case "assessmentList":
         return <RecruiterAssessmentPage />;
+      case "rankings":
+        return <RankedIntervieweesPage />;
+      case "challenges":
+        return <ChallengeFetcher username="B-Chichi" />;
       default:
         return null;
     }
   };
-    function handleLogout() {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("user");
-      localStorage.removeItem("role");
-      window.location.href = "/";
-    }
 
+  function handleLogout() {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("role");
+    window.location.href = "/";
+  }
 
   return (
     <div className="flex min-h-screen bg-[#12283f] text-white">
       {/* Sidebar */}
-      <aside className="w-64 bg-[#0d1b2a] p-6 space-y-6 hidden md:block">
-        <div>
+      <aside className="w-64 bg-[#0d1b2a] p-6 space-y-6 hidden md:block shadow-md">
+        <div className="flex flex-col items-center space-y-2">
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-20 h-20 object-contain rounded-full shadow-md"
+          />
           <h2 className="text-2xl font-bold text-cyan-400">Recruiter Panel</h2>
-          <p className="text-sm text-gray-300 mt-1">{recruiter.name}</p>
+          <p className="text-sm text-gray-300">{recruiter.name}</p>
         </div>
-        <nav className="space-y-4 text-lg">
+
+        <nav className="space-y-4 text-lg font-medium">
           <Tab
-            label=" Dashboard"
+            label="Dashboard"
             tab="dashboard"
             activeTab={activeTab}
             setActiveTab={setActiveTab}
@@ -89,21 +102,28 @@ export default function RecruiterDashboard() {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
+          {/* <Tab label="Schedule Interview" tab="addInterview" activeTab={activeTab} setActiveTab={setActiveTab} /> */}
           <Tab
-            label="Schedule Interview"
-            tab="addInterview"
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-          />
-          <Tab
-            label=" Create Assessment"
+            label="Create Assessment"
             tab="createAssessment"
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
           <Tab
-            label=" Assessments"
+            label="Assessments"
             tab="assessmentList"
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+          <Tab
+            label="Leaderboard"
+            tab="rankings"
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+          <Tab
+            label="Toy Challenges"
+            tab="challenges"
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
