@@ -25,12 +25,21 @@ function Login() {
 
       if (res.ok) {
         toast.success("Login successful!");
-        localStorage.setItem("token", data.access_token);
+
+
+        // ✅ Store token and role
+        localStorage.setItem("access_token", data.access_token);
+        localStorage.setItem("role", data.role);
+
+        // ✅ Redirect based on role
         if (data.role === "recruiter") {
-          navigate("/recruiter/dashboard");
+          navigate("/recruiterdashboard");
         } else if (data.role === "interviewee") {
-          navigate("/dashboard");
-        } 
+          navigate("/intervieweedashboard");
+        } else {
+          toast.error("Unknown role");
+        }
+
       } else {
         toast.error(data.message || "Login failed");
       }
@@ -40,13 +49,11 @@ function Login() {
     }
   };
 
-  // };
-
   return (
     <>
-      <div>
-        <Header />
-      </div>
+
+      <Header />
+
       <div className="min-h-screen flex items-center justify-center bg-[#12283f] px-4">
         <div className="max-w-md w-full p-10 bg-[#112D44] text-white rounded-xl shadow-xl space-y-6">
           <div className="text-center">
@@ -95,6 +102,7 @@ function Login() {
             </button>
           </form>
 
+
           <p className="text-center text-sm text-gray-400 mt-6">
             Don't have an account?{" "}
             <a
@@ -105,10 +113,10 @@ function Login() {
             </a>
           </p>
         </div>
+
       </div>
-      <div>
-        <Footer />
-      </div>
+      <Footer />
+
     </>
   );
 }

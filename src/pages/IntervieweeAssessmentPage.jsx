@@ -41,7 +41,7 @@ export default function IntervieweeAssessmentsPage() {
       setSelected(data);
       setSubmitted(false);
       setAnswers({});
-      setTimeLeft(data.time_limit * 60); // seconds
+      setTimeLeft(data.time_limit * 60);
       fetchQuestions(id, token);
     } catch {
       toast.error("Could not load assessment");
@@ -125,14 +125,16 @@ export default function IntervieweeAssessmentsPage() {
   }, [timeLeft, submitted]);
 
   return (
-    <div className="space-y-6 p-4">
-      <h2 className="text-xl font-bold">Interviewee: Assessments</h2>
+    <div className="space-y-6 p-6 bg-[#12283f] text-white min-h-screen">
+      <h2 className="text-2xl font-bold text-cyan-400">
+         Assessments
+      </h2>
 
       <ul className="space-y-2">
         {assessments.map((a) => (
           <li
             key={a.id}
-            className="cursor-pointer bg-gray-100 p-2 rounded hover:bg-gray-200"
+            className="cursor-pointer bg-[#112D44] text-white p-3 rounded hover:bg-cyan-600 transition"
             onClick={() => handleSelect(a.id)}
           >
             {a.title}
@@ -141,22 +143,27 @@ export default function IntervieweeAssessmentsPage() {
       </ul>
 
       {selected && (
-        <div className="mt-4 p-4 border rounded bg-white shadow space-y-4">
-          <h3 className="text-lg font-semibold">{selected.title}</h3>
+        <div className="mt-4 p-6 border border-cyan-400 rounded bg-[#0D1B2A] shadow space-y-6">
+          <h3 className="text-xl font-semibold text-cyan-300">
+            {selected.title}
+          </h3>
           <p>Time Limit: {selected.time_limit} mins</p>
-          <p>Published: {selected.published ? "Yes" : "No"}</p>
+          <p>Published: {selected.published ? "✅ Yes" : "❌ No"}</p>
 
           {timeLeft !== null && !submitted && (
-            <div className="text-red-600 font-semibold">
+            <div className="text-orange-400 font-semibold">
               ⏳ Time Remaining: {Math.floor(timeLeft / 60)}:
               {String(timeLeft % 60).padStart(2, "0")}
             </div>
           )}
 
-          <h4 className="text-md font-semibold mt-4">Questions</h4>
-          <ul className="space-y-6">
+          <h4 className="text-md font-semibold">Questions</h4>
+          <ul className="space-y-4">
             {questions.map((q) => (
-              <li key={q.id} className="bg-gray-100 p-4 rounded shadow">
+              <li
+                key={q.id}
+                className="bg-[#112D44] p-4 rounded shadow space-y-2"
+              >
                 <p>
                   <strong>Prompt:</strong> {q.prompt}
                 </p>
@@ -166,7 +173,7 @@ export default function IntervieweeAssessmentsPage() {
 
                 {q.type === "multiple_choice" && (
                   <select
-                    className="w-full p-2 mt-2 border rounded"
+                    className="w-full p-2 mt-2 bg-[#12283f] border border-cyan-400 rounded text-white"
                     disabled={submitted}
                     onChange={(e) =>
                       updateAnswer(q.id, "response", e.target.value)
@@ -184,7 +191,7 @@ export default function IntervieweeAssessmentsPage() {
                 {q.type === "codekata" && (
                   <>
                     <select
-                      className="p-2 mt-2 border rounded"
+                      className="p-2 mt-2 bg-[#12283f] border border-cyan-400 rounded text-white"
                       disabled={submitted}
                       onChange={(e) =>
                         updateAnswer(q.id, "language", e.target.value)
@@ -197,7 +204,7 @@ export default function IntervieweeAssessmentsPage() {
                     <textarea
                       rows={8}
                       disabled={submitted}
-                      className="w-full p-2 mt-2 border rounded font-mono"
+                      className="w-full p-2 mt-2 bg-[#12283f] border border-cyan-400 rounded font-mono text-white"
                       placeholder="Enter your code"
                       onChange={(e) =>
                         updateAnswer(q.id, "code", e.target.value)
@@ -212,7 +219,7 @@ export default function IntervieweeAssessmentsPage() {
           <button
             onClick={() => handleSubmit(false)}
             disabled={submitted}
-            className="bg-blue-600 text-white px-4 py-2 rounded"
+            className="bg-cyan-500 hover:bg-cyan-600 text-[#0D1B2A] font-semibold px-4 py-2 rounded transition"
           >
             {submitted ? "Submitted ✅" : "Submit Assessment"}
           </button>
