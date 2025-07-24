@@ -4,8 +4,8 @@ import Home from "./components/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import RectuireSignup from "./pages/Rectuiresignup";
-
-
+import CreateProfile from "./pages/CreateProfile";
+import UpdateProfile from "./pages/UpdateProfile";
 {/*
   import RecruiterDashboard from "./pages/RecruiterDashboard";
   import IntervieweeDashboard from "./pages/IntervieweeDashboard";*/
@@ -39,9 +39,12 @@ function App() {
           <Route path="/intervieweedashboard" element={<IntervieweeDashboard />} />*/}
 
           <Route path="/dashboard" element={<StudentDashboard />} />
+          <Route path="/update/profile" element={<UpdateProfile />} />
+          <Route path="/profile" element={<CreateProfile/>} />
 
           <Route path="/recruiter-signup" element={<RectuireSignup />} />
-          <Route path="/recruiter/dashboard" element={<RecruiterDashboard />} />
+          <Route path="/" element={<RectuireSignup />} />
+          <Route path="/recruiter/dashboard" element={<RecruiterDashboard />}/>
 
           {/* <Route path="/assessment" element={<Assessment/>} /> */}
         
