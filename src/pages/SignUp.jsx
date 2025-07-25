@@ -10,7 +10,8 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("interviewee"); // default role
+  // const [contactInfo, setContactInfo] = useState("");
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,7 +21,13 @@ function Signup() {
       const res = await fetch(`${API_BASE_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, role }),
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          // contact_info: contactInfo,
+          role,
+        }),
       });
 
       const data = await res.json();
@@ -143,6 +150,95 @@ function Signup() {
             </Link>
           </p>
         </div>
+
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Full name"
+              className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Email <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email address"
+              className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Password <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Create a password"
+              className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
+            />
+          </div>
+
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Phone Number <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              value={contactInfo}
+              onChange={(e) => setContactInfo(e.target.value)}
+              placeholder="Contact number"
+              className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              required
+            />
+          </div> */}
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Role <span className="text-red-500">*</span>
+            </label>
+            <select
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg"
+            >
+              <option value="student">Student</option>
+              <option value="recruiter">Recruiter</option>
+            </select>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full py-3 bg-cyan-400 hover:bg-cyan-500 text-[#0D1B2A] font-semibold rounded-lg transition duration-200"
+          >
+            Sign Up
+          </button>
+        </form>
+
+        <p className="text-center text-sm text-gray-400 mt-6">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-cyan-400 font-medium hover:underline"
+          >
+            Login here
+          </Link>
+        </p>
       </div>
       <Footer />
     </>
