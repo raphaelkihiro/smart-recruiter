@@ -15,7 +15,7 @@ import UpdateProfile from "./pages/UpdateProfile";
 
 // import Assessment from "./pages/Assessment";
 
-// import RecruiterDashboard from "./pages/RecruiterDashboard";
+import RecruiterDashboard from "./pages/RecruiterDashboard";
 import IntervieweeDashboard from "./pages/IntervieweeDashboard";
 
 function App() {
