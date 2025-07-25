@@ -1,4 +1,3 @@
-// src/pages/Invite.jsx
 import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import Header from "../components/Header";
@@ -28,14 +27,12 @@ export default function InvitePage() {
     }
 
     try {
-      // Fetch assessments
       const assessmentsRes = await fetch(`${BASE_URL}/assessments`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const assessmentsData = await assessmentsRes.json();
       setAssessments(assessmentsData);
 
-      // Fetch invites
       const invitesRes = await fetch(`${BASE_URL}/invites`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -89,10 +86,8 @@ export default function InvitePage() {
       toast.dismiss();
       toast.success("Invite sent successfully!");
 
-      // Update invite list
       setInvites((prev) => [result.invite, ...prev]);
 
-      // Reset form
       setForm({
         assessment_id: "",
         interviewee_email: "",
@@ -130,7 +125,6 @@ export default function InvitePage() {
           Manage Assessment Invites
         </h1>
 
-        {/* Invite Form */}
         <div className="bg-[#112D44] rounded-xl shadow-lg p-6 mb-10">
           <h2 className="text-xl font-semibold text-cyan-400 mb-4">
             Send New Invitation
@@ -196,7 +190,6 @@ export default function InvitePage() {
           </form>
         </div>
 
-        {/* Invites Table or Empty State */}
         <div className="bg-[#112D44] rounded-xl shadow-lg p-6">
           <h2 className="text-xl font-semibold text-cyan-400 mb-4">
             Sent Invitations
