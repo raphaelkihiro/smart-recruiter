@@ -7,6 +7,7 @@ import RecruiterSignup from "./pages/RecruiterSignup";
 
 import CreateProfile from "./pages/CreateProfile";
 import UpdateProfile from "./pages/UpdateProfile";
+import InvitePage from "./pages/Invite";
 {
   /*
   import RecruiterDashboard from "./pages/RecruiterDashboard";
@@ -27,9 +28,12 @@ function App() {
     <>
       <Router>
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* Redirect home to RecruiterDashboard */}
+          <Route path="/" element={<RecruiterDashboard />} />
+
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/invite" element={<InvitePage />} />
 
           {/*<Route path="/recruiterdashboard" element={<RecruiterDashboard />} />
           <Route path="/intervieweedashboard" element={<IntervieweeDashboard />} />*/}

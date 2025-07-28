@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import RecruiterSubmissionsPage from "./RecruiterSubmissionsPage";
-// import AddInterviewForm from "../components/AddInterviewForm";
 import AssessmentForm from "../components/AssessmentForm";
 import RecruiterAssessmentPage from "./RecruiterAssessmentPage";
 import RankedIntervieweesPage from "./RankedIntervieweesPage";
 import ChallengeFetcher from "../components/ChallengeFetcher";
-import logo from "../assets/image/logo.png"; // ✅ Logo import
+import InvitePage from "./Invite"; // ✅ Added
+import logo from "../assets/image/logo.png";
 
 export default function RecruiterDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -53,8 +53,6 @@ export default function RecruiterDashboard() {
         );
       case "submissions":
         return <RecruiterSubmissionsPage />;
-      // case "addInterview":
-      //   return <AddInterviewForm />;
       case "createAssessment":
         return <AssessmentForm />;
       case "assessmentList":
@@ -63,6 +61,8 @@ export default function RecruiterDashboard() {
         return <RankedIntervieweesPage />;
       case "challenges":
         return <ChallengeFetcher username="B-Chichi" />;
+      case "invites":
+        return <InvitePage />; // ✅ Invite tab content
       default:
         return null;
     }
@@ -102,7 +102,6 @@ export default function RecruiterDashboard() {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
-          {/* <Tab label="Schedule Interview" tab="addInterview" activeTab={activeTab} setActiveTab={setActiveTab} /> */}
           <Tab
             label="Create Assessment"
             tab="createAssessment"
@@ -124,6 +123,12 @@ export default function RecruiterDashboard() {
           <Tab
             label="Toy Challenges"
             tab="challenges"
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+          />
+          <Tab
+            label="Invites"
+            tab="invites"
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           />
