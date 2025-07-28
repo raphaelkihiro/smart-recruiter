@@ -4,18 +4,19 @@ import Body from "./Body"
 function Home() {
   return (
     <>
-    <header>
-      <Header/>
-    </header>
+      
+      <header>
+        <Header />
+      </header>
       <main>
-      <Body/>
+       
+        <Body />
       </main>
       <footer>
-        <Footer/>
-
+        <Footer />
       </footer>
     </>
-  )
+  );
 }
 
 export default Home
