@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import IntervieweeResultsPage from "../components/IntervieweeResultsPage";
 import IntervieweeAssessmentsPage from "./IntervieweeAssessmentPage";
 import ChallengeFetcher from "../components/ChallengeFetcher";
-import logo from "../assets/image/logo.png"; // ✅ Logo import
-
-const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+import logo from "../assets/image/logo.png";
 
 export default function IntervieweeDashboard() {
   const [activeSection, setActiveSection] = useState("details");
@@ -12,18 +10,17 @@ export default function IntervieweeDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("access_token");
-    if (!token) return;
-
-    fetch(`${BASE_URL}/profile`, {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setProfile(Array.isArray(data) ? data[0] : data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    // Pull user info from localStorage
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      try {
+        const parsed = JSON.parse(storedUser);
+        setProfile(parsed);
+      } catch {
+        setProfile(null);
+      }
+    }
+    setLoading(false);
   }, []);
 
   function handleLogout() {
@@ -32,6 +29,13 @@ export default function IntervieweeDashboard() {
     localStorage.removeItem("role");
     window.location.href = "/";
   }
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
+  };
 
   return (
     <div className="flex min-h-screen bg-[#12283f] text-white">
@@ -103,7 +107,7 @@ export default function IntervieweeDashboard() {
           <>
             <section>
               <h1 className="text-3xl font-bold mb-6">
-                Welcome back,{" "}
+                {getGreeting()},{" "}
                 <span className="text-cyan-400">{profile?.name}</span>
               </h1>
 
@@ -113,22 +117,23 @@ export default function IntervieweeDashboard() {
                     Interview Details
                   </h2>
                   <p>
-                    <strong>Interview #:</strong> {profile?.interview_number}
+                    <strong>Interview #:</strong>{" "}
+                    {profile?.interview_number || "—"}
                   </p>
                   <p>
-                    <strong>Company:</strong> {profile?.company}
+                    <strong>Company:</strong> {profile?.company || "—"}
                   </p>
                   <p>
-                    <strong>Role:</strong> {profile?.role}
+                    <strong>Role:</strong> {profile?.role || "—"}
                   </p>
                   <p>
-                    <strong>Date:</strong> {profile?.date}
+                    <strong>Date:</strong> {profile?.date || "—"}
                   </p>
                   <p>
-                    <strong>Time:</strong> {profile?.time}
+                    <strong>Time:</strong> {profile?.time || "—"}
                   </p>
                   <p>
-                    <strong>Location:</strong> {profile?.location}
+                    <strong>Location:</strong> {profile?.location || "—"}
                   </p>
                 </div>
               )}
