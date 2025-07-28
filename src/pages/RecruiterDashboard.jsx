@@ -5,8 +5,7 @@ import AssessmentForm from "../components/AssessmentForm";
 import RecruiterAssessmentPage from "./RecruiterAssessmentPage";
 import RankedIntervieweesPage from "./RankedIntervieweesPage";
 import ChallengeFetcher from "../components/ChallengeFetcher";
-import logo from "../assets/image/logo.png"; // ✅ Logo import
-
+import logo from "../assets/image/logo.png";
 export default function RecruiterDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
   const [recruiter, setRecruiter] = useState({
@@ -16,16 +15,17 @@ export default function RecruiterDashboard() {
     totalCandidates: 0,
   });
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      const userData = JSON.parse(storedUser);
-      setRecruiter((prev) => ({
-        ...prev,
-        name: userData.name || "Recruiter",
-      }));
-    }
-  }, []);
+useEffect(() => {
+  const storedUser = localStorage.getItem("user");
+  if (storedUser) {
+    const userData = JSON.parse(storedUser);
+    console.log(localStorage.getItem("user")); 
+    setRecruiter((prev) => ({
+      ...prev,
+      name: userData.name || "Recruiter",
+    }));
+  }
+}, []);
 
   const renderContent = () => {
     switch (activeTab) {
@@ -33,7 +33,8 @@ export default function RecruiterDashboard() {
         return (
           <>
             <h1 className="text-3xl font-bold mb-6">
-              Welcome, <span className="text-cyan-400">{recruiter.name}</span>
+              {getGreeting()},{" "}
+              <span className="text-cyan-400">{recruiter.name}</span>
             </h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card
@@ -74,6 +75,13 @@ export default function RecruiterDashboard() {
     localStorage.removeItem("role");
     window.location.href = "/";
   }
+
+    const getGreeting = () => {
+      const hour = new Date().getHours();
+      if (hour < 12) return "Good morning";
+      if (hour < 18) return "Good afternoon";
+      return "Good evening";
+    };
 
   return (
     <div className="flex min-h-screen bg-[#12283f] text-white">
