@@ -231,8 +231,9 @@ export default function InvitePage() {
                           ?.title || "N/A"}
                       </td>
                       <td className="px-4 py-3 text-gray-300">
-                        {invite.interviewee_email}
+                        {invite.interviewee.name}
                       </td>
+                    
                       <td className="px-4 py-3">
                         <span
                           className={`px-2 py-1 rounded-full text-xs font-medium ${

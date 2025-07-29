@@ -30,6 +30,7 @@ function Login() {
         // ✅ Store token and role
         localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("role", data.role);
+        localStorage.setItem("user", JSON.stringify(data.user));
 
         // ✅ Redirect based on role
         if (data.role === "recruiter") {
