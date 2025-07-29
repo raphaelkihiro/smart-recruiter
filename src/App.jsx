@@ -5,6 +5,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/SignUp";
 import RecruiterSignup from "./pages/RecruiterSignup";
 
+
 import CreateProfile from "./pages/CreateProfile";
 import UpdateProfile from "./pages/UpdateProfile";
 import InvitePage from "./pages/Invite";
@@ -18,6 +19,7 @@ import InvitePage from "./pages/Invite";
 
 import RecruiterDashboard from "./pages/RecruiterDashboard";
 import IntervieweeDashboard from "./pages/IntervieweeDashboard";
+import IntervieweeAssessmentsPage from "./pages/IntervieweeAssessmentPage";
 
 function App() {
   const token = localStorage.getItem("access_token");
@@ -41,7 +43,10 @@ function App() {
           <Route path="/update/profile" element={<UpdateProfile />} />
           <Route path="/profile" element={<CreateProfile />} />
 
-          {/* <Route path="/assessment" element={<Assessment/>} /> */}
+          <Route
+            path="/assessments/:assessmentId"
+            element={<IntervieweeAssessmentsPage />}
+          />
 
           <Route
             path="/intervieweedashboard"
