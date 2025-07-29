@@ -10,7 +10,8 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("interviewee"); // default role
+  // const [contactInfo, setContactInfo] = useState("");
+  const [role, setRole] = useState("interviewee");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,7 +21,13 @@ function Signup() {
       const res = await fetch(`${API_BASE_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, role }),
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          // contact_info: contactInfo,
+          role,
+        }),
       });
 
       const data = await res.json();
@@ -110,7 +117,7 @@ function Signup() {
               />
             </div>
 
-            <div>
+            {/* <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
                 Role <span className="text-red-500">*</span>
               </label>
@@ -123,7 +130,7 @@ function Signup() {
                 <option value="interviewee">Interviewee</option>
                 <option value="recruiter">Recruiter</option>
               </select>
-            </div>
+            </div> */}
 
             <button
               type="submit"

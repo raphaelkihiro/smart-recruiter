@@ -30,6 +30,7 @@ function Login() {
      
         localStorage.setItem("access_token", data.access_token);
         localStorage.setItem("role", data.role);
+        localStorage.setItem("user", JSON.stringify(data.user));
 
  
         if (data.role === "recruiter") {

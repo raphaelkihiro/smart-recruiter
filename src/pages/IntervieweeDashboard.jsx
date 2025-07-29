@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
 import IntervieweeResultsPage from "../components/IntervieweeResultsPage";
 import IntervieweeAssessmentsPage from "./IntervieweeAssessmentPage";
-import ChallengeFetcher from "../components/ChallengeFetcher";
-import logo from "../assets/image/logo.png"; // ✅ Logo import
+import ChallengeFetcher from "../components/ChallengeFetcher
+import logo from "../assets/image/logo.png";
+
 import { Link } from "react-router-dom";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
+
 
 export default function IntervieweeDashboard() {
   const [activeSection, setActiveSection] = useState("details");
@@ -13,6 +16,7 @@ export default function IntervieweeDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
     const token = localStorage.getItem("access_token");
     if (!token) return;
 
@@ -25,6 +29,7 @@ export default function IntervieweeDashboard() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
+
   }, []);
 
   function handleLogout() {
@@ -33,6 +38,13 @@ export default function IntervieweeDashboard() {
     localStorage.removeItem("role");
     window.location.href = "/";
   }
+
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return "Good morning";
+    if (hour < 18) return "Good afternoon";
+    return "Good evening";
+  };
 
   return (
     <div className="flex min-h-screen bg-[#12283f] text-white">
@@ -115,10 +127,11 @@ export default function IntervieweeDashboard() {
           <>
             <section>
               <h1 className="text-3xl font-bold mb-6">
-                Welcome back,{" "}
+                {getGreeting()},{" "}
                 <span className="text-cyan-400">{profile?.name}</span>
               </h1>
               {activeSection === "details" && (
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {[
               
@@ -178,8 +191,6 @@ export default function IntervieweeDashboard() {
                       </ul>
                     </div>
                   )}
-                </div>
-              )}
 
               {activeSection === "results" && <IntervieweeResultsPage />}
               {activeSection === "assessments" && (

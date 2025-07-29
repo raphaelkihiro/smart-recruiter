@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-function RectuireSignup() {
+function RecruiterSignup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -109,18 +109,18 @@ function RectuireSignup() {
             </div>
 
             <div>
-            <label className="block text-sm font-medium text-gray-300 mb-1">
-              Phone Number <span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              value={contactInfo}
-              onChange={(e) => setContactInfo(e.target.value)}
-              placeholder="Contact number"
-              className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
-              required
-            />
-          </div>
+              <label className="block text-sm font-medium text-gray-300 mb-1">
+                Phone Number <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                value={contactInfo}
+                onChange={(e) => setContactInfo(e.target.value)}
+                placeholder="Contact number"
+                className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                required
+              />
+            </div>
 
             {/* <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
@@ -164,4 +164,4 @@ function RectuireSignup() {
   );
 }
 
-export default RectuireSignup;
+export default RecruiterSignup;
