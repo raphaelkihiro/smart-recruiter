@@ -6,6 +6,7 @@ import RankedIntervieweesPage from "./RankedIntervieweesPage";
 import ChallengeFetcher from "../components/ChallengeFetcher";
 import logo from "../assets/image/logo.png";
 import InvitePage from "./Invite"; 
+import NotificationIcon from "../components/Notification";
 
 
 export default function RecruiterDashboard() {
@@ -34,10 +35,14 @@ useEffect(() => {
       case "dashboard":
         return (
           <>
-            <h1 className="text-3xl font-bold mb-6">
-              {getGreeting()},{" "}
-              <span className="text-cyan-400">{recruiter.name}</span>
-            </h1>
+            <div className="flex justify-between items-center mb-6">
+              <h1 className="text-3xl font-bold">
+                {getGreeting()},{" "}
+                <span className="text-cyan-400">{recruiter.name}</span>
+              </h1>
+              <NotificationIcon />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card
                 title="Scheduled Interviews"
@@ -97,6 +102,7 @@ useEffect(() => {
           />
           <h2 className="text-2xl font-bold text-cyan-400">Recruiter Panel</h2>
           <p className="text-sm text-gray-300">{recruiter.name}</p>
+          
         </div>
 
         <nav className="space-y-4 text-lg font-medium">
