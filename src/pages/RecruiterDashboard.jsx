@@ -5,8 +5,8 @@ import RecruiterAssessmentPage from "./RecruiterAssessmentPage";
 import RankedIntervieweesPage from "./RankedIntervieweesPage";
 import ChallengeFetcher from "../components/ChallengeFetcher";
 import logo from "../assets/image/logo.png";
-import InvitePage from "./Invite"; // ✅ Added
-import logo from "../assets/image/logo.png";
+import InvitePage from "./Invite"; 
+
 
 export default function RecruiterDashboard() {
   const [activeTab, setActiveTab] = useState("dashboard");
