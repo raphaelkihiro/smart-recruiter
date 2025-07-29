@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -15,7 +16,8 @@ function ProfileForm() {
 
   const [loading, setLoading] = useState(false);
   const [profileExists, setProfileExists] = useState(false);
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("access_token");
+  const navigate = useNavigate()
 
   // Fetch logged-in user's profile
   useEffect(() => {
@@ -67,6 +69,8 @@ function ProfileForm() {
 
       toast.success(profileExists ? "✅ Profile updated!" : "✅ Profile created!");
       if (!profileExists) setProfileExists(true);
+
+      navigate("/intervieweedashboard");
     } catch (error) {
       console.error("Error:", error);
       toast.error(`🚫 ${error.message}`);
