@@ -1,12 +1,117 @@
-# React + Vite
+# 🧠 Smart Recruiter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Smart Recruiter is a full-stack web application that streamlines the recruitment and technical assessment process. It allows **recruiters (interviewers)** to create and manage coding assessments, review candidate submissions, and monitor performance. Meanwhile, **candidates (recruitees)** can take assessments, view results, and attempt toy challenges to improve their scores.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
+**Frontend**  
+- React.js + Vite  
+- Tailwind CSS  
+- React Router  
+- Axios  
+- Toastify  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Backend**  
+- Flask (Python)  
+- Flask-RESTful  
+- Flask-JWT-Extended  
+- Flask-SQLAlchemy  
+- PostgreSQL (or SQLite for development)  
+- Flask-Migrate  
+- CORS  
+- dotenv  
+
+---
+
+## ✨ Features
+
+### 👨‍💼 Recruiter (Interviewer) Dashboard
+
+- ✅ **Dashboard Overview** — key metrics and activity.
+- 📝 **Create Assessment** — design and assign tests.
+- 📥 **Submissions** — view & grade answers.
+- 🏆 **Leaderboard** — ranked performance tracking.
+- 🎯 **Toy Challenges** — small coding puzzles.
+- ✉️ **Invites** — send invites to candidates.
+- 🔓 **Logout** — secure sign out.
+
+### 🙋‍♂️ Recruitee (Candidate) Dashboard
+
+- 📋 **Interview Details** — upcoming assessment info.
+- 🧠 **Take Assessment** — complete coding or MCQ tests.
+- 📊 **Results** — view performance feedback.
+- 🎮 **Toy Challenges** — boost rank with extra problems.
+- 🔓 **Logout** — end session.
+
+### 🔐 Authentication
+
+- Secure **Login & Signup** using JWT tokens.
+- Role-based access (Recruiter or Recruitee).
+- Protected routes and sessions.
+
+---
+
+## 📁 Project Structure
+
+smart-recruiter/
+├── client/ # React frontend
+│ ├── components/
+│ ├── pages/
+│ ├── App.jsx
+│ └── main.jsx
+│
+├── server/ # Flask backend
+│ ├── models/
+│ ├── resources/
+│ ├── app.py
+│ └── config.py
+│
+├── migrations/ # Flask-Migrate files
+├── .env
+├── requirements.txt
+├── README.md
+
+---
+
+## ⚙️ Getting Started
+
+### Prerequisites
+
+- Python 3.10+
+- Node.js 18+
+- PostgreSQL or SQLite
+- Git
+
+---
+
+### 🔧 Backend Setup
+
+```bash
+cd server
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+
+Create a .env file:
+
+DATABASE_URL=sqlite:///app.db  
+JWT_SECRET_KEY=your_secret_key
+
+Initialize DB:
+
+flask db init
+flask db migrate -m "Initial"
+flask db upgrade
+
+Run the server:
+
+flask run
+
+Frontend Setup
+
+cd client
+npm install
+npm run dev

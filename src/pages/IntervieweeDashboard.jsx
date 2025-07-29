@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import IntervieweeResultsPage from "../components/IntervieweeResultsPage";
 import IntervieweeAssessmentsPage from "./IntervieweeAssessmentPage";
 import ChallengeFetcher from "../components/ChallengeFetcher";
-import logo from "../assets/image/logo.png"; // ✅ Logo import
+import logo from "../assets/image/logo.png"; 
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
