@@ -29,7 +29,7 @@ function App() {
       <Router>
         <Routes>
           {/* Redirect home to RecruiterDashboard */}
-          <Route path="/" element={<RecruiterDashboard />} />
+          <Route path="/" element={<Home />} />
 
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
