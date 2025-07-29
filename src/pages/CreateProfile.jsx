@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 function CreateProfile() {
   const {
@@ -10,9 +12,21 @@ function CreateProfile() {
     reset,
     formState: { errors }
   } = useForm();
+  const navigate = useNavigate()
 
   const onSubmit = async (data) => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("access_token");
+
+    // Clean the data to avoid sending empty strings
+    const cleanedData = {
+      name: data.name,
+      company: data.company,
+      role: data.role,
+      location: data.location || null,
+      skills: data.skills || null,
+      education: data.education || null,
+      experience: data.experience || null
+    };
 
     try {
       const res = await fetch(`${API_BASE_URL}/profile`, {
@@ -21,7 +35,7 @@ function CreateProfile() {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(cleanedData)
       });
 
       const result = await res.json();
@@ -31,7 +45,9 @@ function CreateProfile() {
       }
 
       toast.success("Profile created successfully!");
-      reset();
+      
+      navigate("/intervieweedashboard");
+      
     } catch (error) {
       console.error("Error:", error);
       toast.error(`🚫 ${error.message}`);
@@ -69,7 +85,7 @@ function CreateProfile() {
             </div>
           ))}
 
-          {/* Text areas for larger content */}
+          {/* Text areas */}
           {[
             { name: "skills", label: "Skills" },
             { name: "education", label: "Education" },
@@ -84,6 +100,16 @@ function CreateProfile() {
               ></textarea>
             </div>
           ))}
+           {/* Update Profile Prompt */}
+            <p className="text-center text-sm text-gray-400 md:col-span-2">
+              Already have a profile?{" "}
+              <a
+                href="/update/profile"
+                className="text-cyan-400 font-medium hover:underline"
+              >
+                Update your profile here
+              </a>
+            </p>
 
           <div className="md:col-span-2 flex justify-end">
             <button
