@@ -126,7 +126,7 @@ export default function RecruiterDashboard() {
             { label: "Create Assessment", tab: "createAssessment" },
             { label: "Assessments", tab: "assessmentList" },
             { label: "Leaderboard", tab: "rankings" },
-            { label: "Toy Challenges", tab: "challenges" },
+            { label: "Trial Assessments", tab: "challenges" },
             { label: "Invites", tab: "invites" },
           ].map(({ label, tab }) => (
             <Tab
