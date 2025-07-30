@@ -10,6 +10,10 @@ export default function RecruiterSubmissionsPage() {
   const [formVisibility, setFormVisibility] = useState({});
 
   useEffect(() => {
+    fetchSubmissions();
+  }, []);
+
+  function fetchSubmissions() {
     const token = localStorage.getItem("access_token");
     if (!token) {
       toast.error("Please log in");
@@ -22,7 +26,7 @@ export default function RecruiterSubmissionsPage() {
       .then((res) => res.json())
       .then(setSubmissions)
       .catch(() => toast.error("Failed to load submissions"));
-  }, []);
+  }
 
   function updateGrade(id, value) {
     setGrades((prev) => ({ ...prev, [id]: parseFloat(value) }));
@@ -57,11 +61,40 @@ export default function RecruiterSubmissionsPage() {
     }));
   }
 
+  async function resetAllSubmissions() {
+    const token = localStorage.getItem("access_token");
+
+    try {
+      const res = await fetch(`${BASE_URL}/submissions`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) throw new Error();
+      setSubmissions([]);
+      setGrades({});
+      setFormVisibility({});
+      toast.success("All submissions deleted");
+    } catch {
+      toast.error("Failed to delete submissions");
+    }
+  }
+
   return (
     <div className="p-4 space-y-6">
-      <h2 className="text-2xl font-bold text-cyan-400">
-        📥 Submissions Review
-      </h2>
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold text-cyan-400">
+           Submissions Review
+        </h2>
+        <button
+          onClick={resetAllSubmissions}
+          className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded font-semibold shadow"
+        >
+           Reset All
+        </button>
+      </div>
 
       {submissions.map((s) => (
         <div

@@ -46,10 +46,7 @@ export default function IntervieweeResultsPage() {
             <strong className="text-cyan-300">Status:</strong>{" "}
             {r.pass_status ? "✅ Passed" : "❌ Failed"}
           </p>
-          <p>
-            <strong className="text-cyan-300">Time Taken:</strong>{" "}
-            {r.time_taken} mins
-          </p>
+          
           <p>
             <strong className="text-cyan-300">Feedback:</strong>{" "}
             {r.feedback_summary || "No feedback provided"}
