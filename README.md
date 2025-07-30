@@ -10,7 +10,7 @@ Smart Recruiter is a full-stack web application that streamlines the recruitment
 - React.js + Vite  
 - Tailwind CSS  
 - React Router  
-- Axios  
+- Fetch
 - Toastify  
 
 **Backend**  
