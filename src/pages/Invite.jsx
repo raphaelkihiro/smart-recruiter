@@ -231,9 +231,11 @@ export default function InvitePage() {
                           ?.title || "N/A"}
                       </td>
                       <td className="px-4 py-3 text-gray-300">
-                        {invite.interviewee.name}
+                        {invite.interviewee?.name ||
+                          invite.interviewee_email ||
+                          "Unknown"}
                       </td>
-                    
+
                       <td className="px-4 py-3">
                         <span
                           className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -244,8 +246,10 @@ export default function InvitePage() {
                               : "bg-yellow-500 text-yellow-100"
                           }`}
                         >
-                          {invite.status.charAt(0).toUpperCase() +
-                            invite.status.slice(1)}
+                          {invite.status
+                            ? invite.status.charAt(0).toUpperCase() +
+                              invite.status.slice(1)
+                            : "Unknown"}
                         </span>
                       </td>
                       <td className="px-4 py-3 text-gray-400">

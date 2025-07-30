@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import IntervieweeResultsPage from "../components/IntervieweeResultsPage";
 import IntervieweeAssessmentsPage from "./IntervieweeAssessmentPage";
-import ChallengeFetcher from "../components/ChallengeFetcher
+import ChallengeFetcher from "../components/ChallengeFetcher";
 import logo from "../assets/image/logo.png";
-
 import { Link } from "react-router-dom";
-
+import NotificationIcon from "../components/Notification"; 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-
 
 export default function IntervieweeDashboard() {
   const [activeSection, setActiveSection] = useState("details");
@@ -16,7 +13,6 @@ export default function IntervieweeDashboard() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
     const token = localStorage.getItem("access_token");
     if (!token) return;
 
@@ -29,7 +25,6 @@ export default function IntervieweeDashboard() {
         setLoading(false);
       })
       .catch(() => setLoading(false));
-
   }, []);
 
   function handleLogout() {
@@ -100,13 +95,8 @@ export default function IntervieweeDashboard() {
             Toy Challenges
           </button>
           <Link
-            to={"/profile"}
-            // onClick={() => setActiveSection("challenges")}
-            className={`block w-full text-left px-4 py-2 rounded ${
-              activeSection === "challenges"
-                ? "bg-cyan-600"
-                : "hover:bg-cyan-700"
-            }`}
+            to="/profile"
+            className="block w-full text-left px-4 py-2 rounded hover:bg-cyan-700"
           >
             Profile
           </Link>
@@ -124,87 +114,84 @@ export default function IntervieweeDashboard() {
         {loading ? (
           <p className="text-gray-300">Loading profile...</p>
         ) : (
-          <>
-            <section>
-              <h1 className="text-3xl font-bold mb-6">
+          <section>
+            <div className="flex justify-between items-center mb-6">
+              <h1 className="text-3xl font-bold">
                 {getGreeting()},{" "}
                 <span className="text-cyan-400">{profile?.name}</span>
               </h1>
-              {activeSection === "details" && (
+              <NotificationIcon />
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {[
-              
-                    { label: "Previous Company", value: profile?.company },
-                    { label: "Interested role", value: profile?.role },
-                    { label: "Place of residence", value: profile?.location },
-                  ].map((item, idx) => (
-                    <div
-                      key={idx}
-                      className="bg-[#112D44] rounded-xl shadow-md p-4 hover:shadow-lg transition"
-                    >
-                      <p className="text-gray-300 text-sm">{item.label}</p>
-                      <p className="text-lg font-bold text-cyan-400">
-                        {item.value || "N/A"}
-                      </p>
-                    </div>
-                  ))}
+            {activeSection === "details" && (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { label: "Previous Company", value: profile?.company },
+                  { label: "Interested role", value: profile?.role },
+                  { label: "Place of residence", value: profile?.location },
+                ].map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="bg-[#112D44] rounded-xl shadow-md p-4 hover:shadow-lg transition"
+                  >
+                    <p className="text-gray-300 text-sm">{item.label}</p>
+                    <p className="text-lg font-bold text-cyan-400">
+                      {item.value || "N/A"}
+                    </p>
+                  </div>
+                ))}
 
-                  {/* Skills List */}
-                  {profile?.skills && (
-                    <div className="bg-[#112D44] rounded-xl shadow-md p-4 col-span-1 md:col-span-2">
-                      <h3 className="text-xl font-bold text-cyan-400 mb-2">
-                        Skills
-                      </h3>
-                      <ul className="list-disc list-inside text-gray-300 space-y-1">
-                        {profile.skills.split(",").map((skill, index) => (
-                          <li key={index}>{skill.trim()}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                {profile?.skills && (
+                  <div className="bg-[#112D44] rounded-xl shadow-md p-4 col-span-1 md:col-span-2">
+                    <h3 className="text-xl font-bold text-cyan-400 mb-2">
+                      Skills
+                    </h3>
+                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                      {profile.skills.split(",").map((skill, index) => (
+                        <li key={index}>{skill.trim()}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-                  {/* Education List */}
-                  {profile?.education && (
-                    <div className="bg-[#112D44] rounded-xl shadow-md p-4 col-span-1 md:col-span-2">
-                      <h3 className="text-xl font-bold text-cyan-400 mb-2">
-                        Education
-                      </h3>
-                      <ul className="list-disc list-inside text-gray-300 space-y-1">
-                        {profile.education.split(",").map((edu, index) => (
-                          <li key={index}>{edu.trim()}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                {profile?.education && (
+                  <div className="bg-[#112D44] rounded-xl shadow-md p-4 col-span-1 md:col-span-2">
+                    <h3 className="text-xl font-bold text-cyan-400 mb-2">
+                      Education
+                    </h3>
+                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                      {profile.education.split(",").map((edu, index) => (
+                        <li key={index}>{edu.trim()}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
-                  {/* Experience List */}
-                  {profile?.experience && (
-                    <div className="bg-[#112D44] rounded-xl shadow-md p-4 col-span-1 md:col-span-2">
-                      <h3 className="text-xl font-bold text-cyan-400 mb-2">
-                        Experience
-                      </h3>
-                      <ul className="list-disc list-inside text-gray-300 space-y-1">
-                        {profile.experience.split(",").map((exp, index) => (
-                          <li key={index}>{exp.trim()}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
+                {profile?.experience && (
+                  <div className="bg-[#112D44] rounded-xl shadow-md p-4 col-span-1 md:col-span-2">
+                    <h3 className="text-xl font-bold text-cyan-400 mb-2">
+                      Experience
+                    </h3>
+                    <ul className="list-disc list-inside text-gray-300 space-y-1">
+                      {profile.experience.split(",").map((exp, index) => (
+                        <li key={index}>{exp.trim()}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
 
-              {activeSection === "results" && <IntervieweeResultsPage />}
-              {activeSection === "assessments" && (
-                <IntervieweeAssessmentsPage />
-              )}
-              {activeSection === "challenges" && (
-                <ChallengeFetcher
-                  username={
-                    profile?.codewarsUsername || profile?.name || "some-user"
-                  }
-                />
-              )}
-            </section>
-          </>
+            {activeSection === "results" && <IntervieweeResultsPage />}
+            {activeSection === "assessments" && <IntervieweeAssessmentsPage />}
+            {activeSection === "challenges" && (
+              <ChallengeFetcher
+                username={
+                  profile?.codewarsUsername || profile?.name || "some-user"
+                }
+              />
+            )}
+          </section>
         )}
       </main>
     </div>
