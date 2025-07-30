@@ -11,12 +11,11 @@ export default function RecruiterAssessmentsPage() {
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [showForm, setShowForm] = useState(false);
 
-
   useEffect(() => {
     const token = localStorage.getItem("access_token");
     if (!token) {
       toast.error("Please log in");
-      return; // ✅ important: no implicit return value from useEffect
+      return;
     }
 
     fetch(`${BASE_URL}/assessments`, {
@@ -74,13 +73,41 @@ export default function RecruiterAssessmentsPage() {
     toast.success("Question added");
   }
 
-  
+  async function handleDeleteAssessment(id) {
+    if (
+      !window.confirm(
+        "Are you sure you want to delete this assessment? This cannot be undone."
+      )
+    )
+      return;
+
+    const token = localStorage.getItem("access_token");
+    try {
+      const res = await fetch(`${BASE_URL}/assessments/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) throw new Error();
+      toast.success("Assessment deleted");
+      setAssessments((prev) => prev.filter((a) => a.id !== id));
+      setSelected(null);
+      setQuestions([]);
+      setSelectedQuestion(null);
+      setShowForm(false);
+    } catch {
+      toast.error("Failed to delete assessment");
+    }
+  }
 
   return (
     <div className="space-y-6 p-4">
       <h2 className="text-xl font-bold text-cyan-400">
         Recruiter: Assessments
       </h2>
+
       <ul className="space-y-2">
         {assessments.map((a) => (
           <li
@@ -92,6 +119,7 @@ export default function RecruiterAssessmentsPage() {
           </li>
         ))}
       </ul>
+
       {selected && (
         <div className="mt-4 p-4 border border-cyan-400 rounded bg-[#0D1B2A] text-white shadow space-y-4">
           <h3 className="text-lg font-semibold text-cyan-300">
@@ -100,12 +128,21 @@ export default function RecruiterAssessmentsPage() {
           <p>Time Limit: {selected.time_limit} mins</p>
           <p>Published: {selected.published ? "Yes" : "No"}</p>
 
-          <button
-            onClick={() => setShowForm((prev) => !prev)}
-            className="bg-cyan-500 hover:bg-cyan-600 text-[#0D1B2A] font-semibold px-4 py-2 rounded transition duration-200"
-          >
-            {showForm ? "Cancel" : "Add Question"}
-          </button>
+          <div className="flex gap-4 flex-wrap">
+            <button
+              onClick={() => setShowForm((prev) => !prev)}
+              className="bg-cyan-500 hover:bg-cyan-600 text-[#0D1B2A] font-semibold px-4 py-2 rounded transition duration-200"
+            >
+              {showForm ? "Cancel" : "Add Question"}
+            </button>
+
+            <button
+              onClick={() => handleDeleteAssessment(selected.id)}
+              className="bg-red-500 hover:bg-red-600 text-white font-semibold px-4 py-2 rounded transition duration-200"
+            >
+               Delete Assessment
+            </button>
+          </div>
 
           {showForm && (
             <QuestionForm
@@ -149,7 +186,6 @@ export default function RecruiterAssessmentsPage() {
           )}
         </div>
       )}
-      
     </div>
   );
 }
