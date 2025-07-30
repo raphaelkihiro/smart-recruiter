@@ -1,30 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-export default function ResultForm({ submissionId, existingResult }) {
-  const [score, setScore] = useState(existingResult?.score ?? "");
-  const [rank, setRank] = useState(existingResult?.rank ?? "");
-  const [passStatus, setPassStatus] = useState(
-    existingResult?.pass_status ?? false
-  );
-  const [feedback, setFeedback] = useState(
-    existingResult?.feedback_summary ?? ""
-  );
-  const [isReleased, setIsReleased] = useState(
-    existingResult?.is_released ?? false
-  );
+export default function ResultForm({ submissionId }) {
+  const [existingResult, setExistingResult] = useState(null);
+  const [score, setScore] = useState("");
+  const [rank, setRank] = useState("");
+  const [passStatus, setPassStatus] = useState(false);
+  const [feedback, setFeedback] = useState("");
+  const [isReleased, setIsReleased] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("access_token");
+    if (!token || !submissionId) return;
+
+    fetch(`${BASE_URL}/interviewee/results`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        const found = data.find((r) => r.submission_id === submissionId);
+        if (found) {
+          setExistingResult(found);
+          setScore(found.score ?? "");
+          setRank(found.rank ?? "");
+          setPassStatus(found.pass_status ?? false);
+          setFeedback(found.feedback_summary ?? "");
+          setIsReleased(found.is_released ?? false);
+        }
+      })
+      .catch(() => toast.error("Failed to fetch result"));
+  }, [submissionId]);
 
   async function handleSubmit(e) {
     e.preventDefault();
     const token = localStorage.getItem("access_token");
-    if (!token) return toast.error("Login required");
-
-    if (!submissionId) {
-      toast.error("Invalid submission ID");
-      return;
-    }
+    if (!token || !submissionId) return toast.error("Login required");
 
     try {
       const res = await fetch(`${BASE_URL}/results`, {
