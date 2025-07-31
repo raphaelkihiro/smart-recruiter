@@ -67,10 +67,10 @@ function CreateProfile() {
         <form onSubmit={handleSubmit(onSubmit)} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Basic fields */}
           {[
-            { name: "name", label: "Full Name" },
-            { name: "company", label: "Company" },
-            { name: "role", label: "Role" },
-            { name: "location", label: "Location" }
+            { name: "name", label: "User Name" },
+            { name: "company", label: "Previous Company" },
+            { name: "role", label: "Interested Role" },
+            { name: "location", label: "Place of Residence" }
           ].map(({ name, label }) => (
             <div key={name}>
               <label className="block text-gray-200 font-medium mb-1">{label}</label>
