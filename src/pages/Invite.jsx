@@ -146,7 +146,7 @@ export default function InvitePage() {
                   <option value="">Select an assessment</option>
                   {assessments.map((a) => (
                     <option key={a.id} value={a.id}>
-                      {a.title} (ID: {a.id})
+                      {a.title} 
                     </option>
                   ))}
                 </select>
