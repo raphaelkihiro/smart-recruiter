@@ -7,6 +7,8 @@ import ChallengeFetcher from "../components/ChallengeFetcher";
 import logo from "../assets/image/logo.png";
 import InvitePage from "./Invite";
 import NotificationIcon from "../components/Notification";
+import RecruiterSignup from "./RecruiterSignup";
+import { Link } from "react-router-dom";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -101,6 +103,9 @@ export default function RecruiterDashboard() {
         return <ChallengeFetcher username="B-Chichi" />;
       case "invites":
         return <InvitePage />;
+      case "rectuire-signup":
+        return <RecruiterSignup />;
+
       default:
         return null;
     }
@@ -128,6 +133,7 @@ export default function RecruiterDashboard() {
             { label: "Leaderboard", tab: "rankings" },
             { label: "Trial Assessments", tab: "challenges" },
             { label: "Invites", tab: "invites" },
+            { label: "SignUp", tab: "rectuire-signup" },
           ].map(({ label, tab }) => (
             <Tab
               key={tab}
@@ -137,6 +143,7 @@ export default function RecruiterDashboard() {
               setActiveTab={setActiveTab}
             />
           ))}
+         
           <button
             onClick={handleLogout}
             className="block w-full text-left px-4 py-2 text-red-400 hover:text-red-500"
