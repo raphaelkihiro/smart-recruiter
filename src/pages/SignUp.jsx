@@ -10,12 +10,17 @@ function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [contactInfo, setContactInfo] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("interviewee");
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
 
     try {
       const res = await fetch(`${API_BASE_URL}/signup`, {
@@ -25,7 +30,6 @@ function Signup() {
           name,
           email,
           password,
-          // contact_info: contactInfo,
           role,
         }),
       });
@@ -38,12 +42,12 @@ function Signup() {
         if (data.access_token) {
           localStorage.setItem("access_token", data.access_token);
         }
+
         if (data.user) {
           localStorage.setItem("user", JSON.stringify(data.user));
-          localStorage.setItem("role", data.user.role); // ✅ store role from backend
+          localStorage.setItem("role", data.user.role);
         }
 
-        // ✅ Redirect based on role
         if (data.user?.role === "recruiter") {
           navigate("/recruiterdashboard");
         } else if (data.user?.role === "interviewee") {
@@ -117,20 +121,19 @@ function Signup() {
               />
             </div>
 
-            {/* <div>
+            <div>
               <label className="block text-sm font-medium text-gray-300 mb-1">
-                Role <span className="text-red-500">*</span>
+                Confirm Password <span className="text-red-500">*</span>
               </label>
-              <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-                className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg"
+              <input
+                type="password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                placeholder="Re-enter your password"
+                className="w-full px-4 py-3 border border-cyan-400 bg-[#0D1B2A] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400"
                 required
-              >
-                <option value="interviewee">Interviewee</option>
-                <option value="recruiter">Recruiter</option>
-              </select>
-            </div> */}
+              />
+            </div>
 
             <button
               type="submit"
