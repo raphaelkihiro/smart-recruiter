@@ -64,7 +64,7 @@ export default function IntervieweeDashboard() {
               activeSection === "details" ? "bg-cyan-600" : "hover:bg-cyan-700"
             }`}
           >
-            Interview Details
+            Interviewee Details
           </button>
           <button
             onClick={() => setActiveSection("results")}
