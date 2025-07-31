@@ -92,7 +92,7 @@ export default function IntervieweeDashboard() {
                 : "hover:bg-cyan-700"
             }`}
           >
-            Toy Challenges
+            Trial Assessments
           </button>
           <Link
             to="/profile"

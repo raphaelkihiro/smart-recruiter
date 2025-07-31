@@ -131,7 +131,7 @@ export default function RecruiterDashboard() {
             { label: "Create Assessment", tab: "createAssessment" },
             { label: "Assessments", tab: "assessmentList" },
             { label: "Leaderboard", tab: "rankings" },
-            { label: "Trial Challenges", tab: "challenges" },
+            { label: "Trial Assessments", tab: "challenges" },
             { label: "Invites", tab: "invites" },
             { label: "SignUp", tab: "rectuire-signup" },
           ].map(({ label, tab }) => (

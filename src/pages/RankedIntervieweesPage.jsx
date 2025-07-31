@@ -37,7 +37,7 @@ export default function RankedIntervieweesPage() {
               <th className="p-3">Name</th>
               <th className="p-3">Score</th>
               <th className="p-3">Status</th>
-              <th className="p-3">Released</th>
+              
             </tr>
           </thead>
           <tbody>
@@ -52,7 +52,6 @@ export default function RankedIntervieweesPage() {
                 <td className="p-3">
                   {r.pass_status ? "✅ Passed" : "❌ Failed"}
                 </td>
-                <td className="p-3">{r.released ? "✅ Yes" : "🚫 No"}</td>
               </tr>
             ))}
           </tbody>
